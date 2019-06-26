@@ -1,0 +1,3 @@
+#Avoid tracking following files
+*.o
+*.d
