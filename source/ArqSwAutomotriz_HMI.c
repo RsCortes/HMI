@@ -52,7 +52,10 @@ int main(void) {
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
     BOARD_InitBootPeripherals();
-  	/* Init FSL debug console. */
+
+    /* THIS IS A TEST*/
+
+    /* Init FSL debug console. */
     BOARD_InitDebugConsole();
 
     PRINTF("Hello World\n");
