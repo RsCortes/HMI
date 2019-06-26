@@ -1,12 +1,11 @@
 /*
  * GENERATED FILE - DO NOT EDIT
- * Copyright (c) 2008 - 2013 Code Red Technologies Ltd, 
- * Copyright 2015, 2018 NXP
+ * (c) Code Red Technologies Ltd, 2008-2013
  * (c) NXP Semiconductors 2013-2019
  * Generated linker script file for MKW36Z512xxx4
  * Created from memory.ldt by FMCreateLinkMemory
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v10.3.0 [Build 2200] [2018-12-03] on 20/06/2019 07:08:35 PM
+ * MCUXpresso IDE v10.2.0 [Build 759] [2018-05-15] on Jun 25, 2019 8:51:41 PM
  */
 
 MEMORY
