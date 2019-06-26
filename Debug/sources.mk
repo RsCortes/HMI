@@ -19,6 +19,7 @@ board \
 drivers \
 freertos \
 source \
+source/GPIO \
 startup \
 utilities \
 
