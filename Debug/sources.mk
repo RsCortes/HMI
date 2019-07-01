@@ -19,6 +19,7 @@ board \
 drivers \
 freertos \
 source \
+source/CAN_Module \
 source/GPIO \
 startup \
 utilities \
