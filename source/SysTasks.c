@@ -19,6 +19,7 @@
 #include "timers.h"
 #include "semphr.h"
 #include "CAM.h"
+#include "SINI.h"
 
 static void CAM10ms(void * Param);
 static void CAM20ms(void * Param);
@@ -161,4 +162,9 @@ static void CAM1000ms(void * Param)
 
 		vTaskDelayUntil(&CurrentTicks,Delay);
 	}
+}
+
+void InitSystem ( void )
+{
+	SINI_vSystemInit();
 }

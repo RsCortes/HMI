@@ -59,6 +59,8 @@ int main(void) {
     BOARD_InitBootClocks();
     BOARD_InitBootPeripherals();
 
+    InitSystem();
+
     CreateSystemTasks();
 
     /* Start scheduling. */
