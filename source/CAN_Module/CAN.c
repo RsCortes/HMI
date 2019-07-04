@@ -45,6 +45,9 @@
 #define RX_MESSAGE_BUFFER_NUM (8)
 #define TX_MESSAGE_BUFFER_NUM (9)
 
+#define MIDDLELAYER_BUFFER_LENGTH (7)
+#define MAX_APP_BUFFERS (5)
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                       Typedef Section
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +68,27 @@ static void flexcan_callback(CAN_Type *base, flexcan_handle_t *handle, status_t 
 //                                   Static Constants Section
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
+static struct RcvApplicationBuffers{
+
+	uint8_t u8_BufferRcvEmissions [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferRcvEmgcyStop [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferRcvRPM [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferRcvFan [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferRcvTemperature [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferRcvThrottle [MIDDLELAYER_BUFFER_LENGTH];
+
+} st_CANReceiveBuffers;
+
+static struct SendApplicationBuffers{
+
+	uint8_t u8_BufferSendEmissions [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferSendEmgcyStop [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferSendRPM [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferSendFan [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferSendTemperature [MIDDLELAYER_BUFFER_LENGTH];
+	uint8_t u8_BufferSendThrottle [MIDDLELAYER_BUFFER_LENGTH];
+
+} st_CANSendBuffers;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Global Variables Section
@@ -79,6 +103,8 @@ flexcan_mb_transfer_t rxXfer;
 flexcan_fd_frame_t txFrame;
 flexcan_fd_frame_t rxFrame;
 #endif
+
+static uint8_t u8_BufferSendIndexer = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //                                   Static Variables Section
@@ -129,7 +155,7 @@ bool bFUN_FlexCANConfig(void)
 	#if (!defined(FSL_FEATURE_FLEXCAN_SUPPORT_ENGINE_CLK_SEL_REMOVE)) || !FSL_FEATURE_FLEXCAN_SUPPORT_ENGINE_CLK_SEL_REMOVE
 		flexcanConfig.clkSrc = kFLEXCAN_ClkSrcPeri;
 	#endif /* FSL_FEATURE_FLEXCAN_SUPPORT_ENGINE_CLK_SEL_REMOVE */
-		flexcanConfig.enableLoopBack = false;
+		flexcanConfig.enableLoopBack = true;
 	#if (defined(USE_CANFD) && USE_CANFD)
 		FLEXCAN_FDInit(EXAMPLE_CAN, &flexcanConfig, EXAMPLE_CAN_CLK_FREQ, BYTES_IN_MB, false);
 	#endif
@@ -180,17 +206,43 @@ bool bFUN_FlexCANConfig(void)
  */
 //bool bFUN_FlexCANSendNonBlocking(void)
 //{
+//	if(u8_BufferSendIndexer >= MAX_APP_BUFFERS)
+//	{
+//		u8_BufferSendIndexer = 0;
+//	}
+//	else
+//	{
+//		u8_BufferSendIndexer ++;
+//	}
+//
+//	memcpy(&/*CANSendBuffer*/[0], &/*struct.middlelayer_buffer*/[u8_BufferSendIndexer], /*length*/);
 //	FLEXCAN_TransferFDSendNonBlocking(EXAMPLE_CAN, &flexcanHandle, &txXfer);
+//	memset(/*CANSendBuffer*/, 0,/*length*/);
 //	return true;
 //}
 
 /*!
  * @brief FlexCAN receive data function
  */
+/*
+ * TODO:
+ * */
 //bool bFUN_FlexCANReceiveNonBlocking(void)
 //{
+//	memcpy(&/*middlelayer_buffer*/[0], &/*CANRcvBuffer*/[0], /*define of length*/);
 //	FLEXCAN_TransferFDReceiveNonBlocking(EXAMPLE_CAN, &flexcanHandle, &rxXfer);
+//	memset(/*middlelayer_buffer*/, 0,/*define of length*/);
 //	return true;
+//}
+
+//bool bFUN_FillBuffer(enum ApplicationBuffer)
+//{
+//
+//}
+//
+//bool bFUN_CleanBuffer(enum ApplicationBuffer)
+//{
+//
 //}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
