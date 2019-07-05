@@ -39,16 +39,15 @@
 #include "clock_config.h"
 #include "MKW36Z4.h"
 #include "fsl_debug_console.h"
-#include "stdbool.h"
-
+#include "SysTasks.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "timers.h"
+#include "semphr.h"
 /* TODO: insert other include files here. */
-#include <GPIO/GPIO_Init.h>
-#include <CAN_Module/CAN.h>
 
 /* TODO: insert other definitions and declarations here. */
-bool b_CANConfigFlag = false;
-bool b_CANSendFlag = false;
-bool b_CANReceiveFlag = false;
 
 /*
  * @brief   Application entry point.
@@ -60,18 +59,14 @@ int main(void) {
     BOARD_InitBootClocks();
     BOARD_InitBootPeripherals();
 
-    b_CANConfigFlag = bFUN_FlexCANConfig();
+    InitSystem();
 
-    /* Init FSL debug console. */
-    BOARD_InitDebugConsole();
+    CreateSystemTasks();
 
-    PRINTF("Hello World\n");
-
-    /* Force the counter to be placed into memory. */
-    volatile static int i = 0 ;
-    /* Enter an infinite loop, just incrementing a counter. */
+    /* Start scheduling. */
+    vTaskStartScheduler();
     while(1) {
-        i++ ;
+
     }
     return 0 ;
 }
