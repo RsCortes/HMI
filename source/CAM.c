@@ -6,7 +6,7 @@
  */
 
 #include "CAM.h"
-
+#include "UART.h"
 /**
  * @name:   CAM_Containter10ms
  * @brief:  This function will contain the app that runs at 10 ms
@@ -38,6 +38,7 @@ void CAM_Containter20ms( void )
 void CAM_Containter100ms( void )
 {
 	__asm("nop");
+	UART_vAppTest();
 }
 /**
  * @name:   CAM_Containter1000ms
