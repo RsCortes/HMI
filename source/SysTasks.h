@@ -9,5 +9,6 @@
 #define SYSTASKS_H_
 
 extern void CreateSystemTasks ( void );
+extern void InitSystem ( void );
 
 #endif /* SYSTASKS_H_ */

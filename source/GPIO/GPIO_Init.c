@@ -52,13 +52,13 @@
 //                                      Functions Section
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-void v_EnableCANGpio(void)
+void vFUN_EnableCANGpio(void)
 {
 	PORT_SetPinMux(PORTC, PIN3_IDX, kPORT_MuxAlt9);            /* PORTC3 is configured as CAN0_TX */
 	PORT_SetPinMux(PORTC, PIN4_IDX, kPORT_MuxAlt9);            /* PORTC4 is configured as CAN0_RX */
 }
 
-void v_EnableTPM(void)
+void vFUN_EnableTPMGpio(void)
 {
 	CLOCK_EnableClock(kCLOCK_PortA);                           /* Port A Clock Gate Control: Clock enabled */
 
