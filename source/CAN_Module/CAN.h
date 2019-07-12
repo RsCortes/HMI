@@ -56,9 +56,10 @@ typedef enum ApplicationBuffer{
 extern "C" {
 #endif // __cplusplus
 
-bool bFUN_FlexCANConfig(void);
-bool bFUN_FlexCANSendNonBlocking(void);
-bool bFUN_FlexCANReceiveNonBlocking(void);
+extern void vFUN_FlexCANConfig ( void );
+extern void bFUN_FlexCANSendNonBlocking ( void );
+extern void bFUN_FlexCANReceiveNonBlocking( void );
+extern void vFUN_Start2Listen_FlexCAN ( void );
 
 #if defined(__cplusplus)
 }

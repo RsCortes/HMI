@@ -35,9 +35,9 @@
 extern "C" {
 #endif // __cplusplus
 
-void v_EnableCANGpio(void);
-void v_EnableTPM(void);
-void v_EnableLights(void);
+void vFUN_EnableCANGpio(void);
+void vFUN_EnableTPMGpio(void);
+void vFUN_EnableLights(void);
 
 #if defined(__cplusplus)
 }
