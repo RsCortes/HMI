@@ -32,6 +32,7 @@ void BOARD_InitBootPins(void) {
     BOARD_InitPins();
 }
 
+#define PIN2_IDX                         2u   /*!< Pin number for pin 6 in a port */
 #define PIN6_IDX                         6u   /*!< Pin number for pin 6 in a port */
 #define PIN7_IDX                         7u   /*!< Pin number for pin 7 in a port */
 #define SOPT5_LPUART0ODE_DISABLED     0x00u   /*!< LPUART0 Open Drain Enable: Open drain is disabled on LPUART0. */
@@ -61,6 +62,10 @@ void BOARD_InitPins(void) {
     CLOCK_EnableClock(kCLOCK_PortB);
     /* Port C Clock Gate Control: Clock enabled */
     CLOCK_EnableClock(kCLOCK_PortC);
+
+
+    /* PORTB2 (pin 18) is configured as TPM1_CH0 */
+    PORT_SetPinMux(PORTB, PIN2_IDX, kPORT_MuxAlt5);
 
     /* PORTA16 (pin 4) is configured as PTA16 */
     PORT_SetPinMux(BOARD_INITPINS_LED_GREEN_PORT, BOARD_INITPINS_LED_GREEN_PIN, kPORT_MuxAsGpio);

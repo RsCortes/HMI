@@ -7,6 +7,9 @@
 #include "SINI.h"
 #include <CAN_Module/CAN.h>
 #include <GPIO/GPIO_Init.h>
+#include "Driver_TPM.h"
+#include "UART.h"
+#include "clock_config.h"
 
 void SINI_vSystemInit ( void )
 {
@@ -15,6 +18,9 @@ void SINI_vSystemInit ( void )
 	vFUN_FlexCANConfig();
 
 	vFUN_EnableTPMGpio();
-
 	vFUN_Start2Listen_FlexCAN();
+	UART_vInit();
+	TPM_Params ();
+	TPM_Initialize();
+    BOARD_BootClockRUN();
 }
