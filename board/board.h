@@ -105,6 +105,18 @@
 #define ERPC_BOARD_DSPI_INT_PIN_IRQ PORTB_PORTC_IRQn
 #define ERPC_BOARD_DSPI_INT_PIN_IRQ_HANDLER PORTB_PORTC_IRQHandler
 
+
+#if defined(LOGIC_LED_ON)
+  #if (LOGIC_LED_ON)
+     #define TPM_LED_ON_LEVEL kTPM_HighTrue
+  #else
+    #define TPM_LED_ON_LEVEL kTPM_LowTrue
+  #endif
+#else
+  #define TPM_LED_ON_LEVEL kTPM_LowTrue
+#endif
+
+
 #if defined(__cplusplus)
 extern "C" {
 #endif /* __cplusplus */

@@ -32,7 +32,6 @@
  * @file    ArqSwAutomotriz_HMI.c
  * @brief   Application entry point.
  */
-#include <stdio.h>
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
