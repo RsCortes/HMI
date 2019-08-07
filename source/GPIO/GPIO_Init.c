@@ -54,6 +54,8 @@
 
 void vFUN_EnableCANGpio(void)
 {
+    CLOCK_EnableClock(kCLOCK_PortC);
+
 	PORT_SetPinMux(PORTC, PIN3_IDX, kPORT_MuxAlt9);            /* PORTC3 is configured as CAN0_TX */
 	PORT_SetPinMux(PORTC, PIN4_IDX, kPORT_MuxAlt9);            /* PORTC4 is configured as CAN0_RX */
 }

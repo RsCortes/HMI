@@ -163,7 +163,7 @@ void vFUN_FlexCANConfig ( void )
 	#if (!defined(FSL_FEATURE_FLEXCAN_SUPPORT_ENGINE_CLK_SEL_REMOVE)) || !FSL_FEATURE_FLEXCAN_SUPPORT_ENGINE_CLK_SEL_REMOVE
 		flexcanConfig.clkSrc = kFLEXCAN_ClkSrcPeri;
 	#endif /* FSL_FEATURE_FLEXCAN_SUPPORT_ENGINE_CLK_SEL_REMOVE */
-		flexcanConfig.enableLoopBack = true;
+		flexcanConfig.enableLoopBack = false;
 	#if (defined(USE_CANFD) && USE_CANFD)
 		FLEXCAN_FDInit(EXAMPLE_CAN, &flexcanConfig, EXAMPLE_CAN_CLK_FREQ, BYTES_IN_MB, false);
 	#endif
@@ -246,11 +246,15 @@ void vFUN_FlexCANReceiveNonBlocking ( void )
 	{
 		memcpy(&u8_CANIncomingData[0], &rxFrame.dataWord[0], MIDDLELAYER_BUFFER_LENGTH);
 
-		switch( u8_CANIncomingData[2] )
+		switch( u8_CANIncomingData[1] )
 		{
 			case 0:
 				memcpy(&pst_ReceiveAppBuffers->u8_BufferRcvEmissions[0], &rxFrame.dataWord[0], MIDDLELAYER_BUFFER_LENGTH);
 				memset(&rxFrame.dataWord[0], 0, CAN_FD_BUFFER_LENGTH);
+				for(uint8_t i=2; i<8; i++)
+				{
+					PRINTF("Received from CAN: %i \n\r", pst_ReceiveAppBuffers->u8_BufferRcvEmissions[i]);
+				}
 				break;
 
 			case 1:

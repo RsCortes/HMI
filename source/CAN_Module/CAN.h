@@ -57,8 +57,8 @@ extern "C" {
 #endif // __cplusplus
 
 extern void vFUN_FlexCANConfig ( void );
-extern void bFUN_FlexCANSendNonBlocking ( void );
-extern void bFUN_FlexCANReceiveNonBlocking( void );
+extern void vFUN_FlexCANSendNonBlocking ( void );
+extern void vFUN_FlexCANReceiveNonBlocking( void );
 extern void vFUN_Start2Listen_FlexCAN ( void );
 
 #if defined(__cplusplus)

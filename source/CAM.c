@@ -7,6 +7,8 @@
 
 #include "CAM.h"
 #include "UART.h"
+#include <CAN_Module/CAN.h>
+
 /**
  * @name:   CAM_Containter10ms
  * @brief:  This function will contain the app that runs at 10 ms
